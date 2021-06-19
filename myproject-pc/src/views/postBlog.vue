@@ -7,14 +7,11 @@
     element-loading-spinner="el-icon-loading"
   >
     <app-header></app-header>
-    <main class="contain" background="">
+    <main class="contain" background>
       <h1 style="color: rgba(64, 158, 255, 0.8)">发表文章</h1>
       <p style="color: rgba(64, 158, 255, 0.8)">
-        标题：<el-input
-          v-model="title"
-          placeholder="请输入内容"
-          style="width: 200px"
-        ></el-input>
+        标题：
+        <el-input v-model="title" placeholder="请输入内容" style="width: 200px"></el-input>
       </p>
       <div
         style="
@@ -22,22 +19,22 @@
           margin: 10px 0 0 30px;
           color: rgba(64, 158, 255, 0.8);
         "
-      >
-        内容：
-      </div>
+      >内容：</div>
       <textarea name="" id="" cols="165" rows="40" v-model="content"></textarea>
-      <el-button type="primary" round @click="postBlog" class="el-icon-document"
-        >发表</el-button
-      >
+      <!-- <div id="editor">
+        <editor ref="editorOne" v-model="content" @change="change"></editor>
+      </div> -->
+      <el-button type="primary" round @click="postBlog" class="el-icon-document">发表</el-button>
     </main>
   </div>
 </template>
 
 <script>
 import AppHeader from '../components/AppHeader.vue'
+// import Editor from '../components/Editor.vue'
 
 export default {
-  components: { AppHeader },
+  components: { AppHeader},
   data() {
     return {
       title: '',
@@ -88,6 +85,9 @@ export default {
         this.$router.push('/login')
       }
     }
+    // change(val) {
+    //   console.log(val)
+    // }
   }
 }
 </script>
@@ -100,6 +100,7 @@ export default {
 input {
   width: 150px;
   background: rgb(224, 205, 244);
+  margin: 20px 0;
 }
 textarea {
   background: #fff;
@@ -108,4 +109,14 @@ textarea {
   margin-top: 10px;
   outline: none;
 }
+/* #editor {
+  width:1010px;
+  height: 400px;
+  background: #fff;
+  margin: 100px 225px;
+  border: 0;
+  margin-top: 10px;
+  outline: none;
+} */
+
 </style>

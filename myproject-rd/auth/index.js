@@ -5,7 +5,7 @@ let jwt = require('jsonwebtoken');
 let secretKey = "**my_secret_key$$"
 
 module.exports = {
-    // 生成Token
+    // 生成Token (区别于其它的唯一标识，加密的key，过期时间)
     createToken: (payload)=>{
         return jwt.sign(payload, secretKey,{expiresIn: '1h'});
     },

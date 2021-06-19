@@ -1,4 +1,5 @@
 const blogModel = require("../model/blogModel");
+const dataTimeUtil = require('../utils/dateTimeUtil.js')
 
 module.exports = {
     postBlog: async function (ctx, next) {
@@ -66,6 +67,7 @@ module.exports = {
         if (results.length > 0) {
             // 将blog_id, title, content, post_time解构出来
             let { blog_id, title, content, post_time } = results[0];
+            post_time = dataTimeUtil.formatTime(post_time);
             // 给blogInfo添加属性
             let blogInfo = {
                 blog_id,
@@ -76,6 +78,7 @@ module.exports = {
             blogInfo.comments = [];
             for (let i = 0; i < results.length; i++) {
                 let obj = results[i];
+                obj.comm_post_time = dataTimeUtil.formatTime(obj.comm_post_time);
                 blogInfo.comments.push({
                     comm_id: obj.comm_id,
                     comm_content: obj.comm_content,
